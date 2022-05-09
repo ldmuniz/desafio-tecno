@@ -37,7 +37,8 @@ class APIController extends Controller
         INNER JOIN movement m ON m.id = r2.movement_id
         INNER JOIN user u ON u.id = r2.user_id
         WHERE m.id = ?
-        GROUP BY r2.movement_id, user_id", [$id]);        
+        GROUP BY r2.movement_id, user_id
+        ORDER BY max(r2.value) DESC", [$id]);        
         
         $position = 0;
         for ($i=0; $i < count($results); $i++) { 
